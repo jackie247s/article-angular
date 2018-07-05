@@ -4,13 +4,13 @@ import { ArticleService } from './services/article.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
+import { AppComponent2 } from './app.component2';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent2
   ],
   imports: [
     BrowserModule,
@@ -21,6 +21,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   providers: [
     ArticleService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent2]
 })
 export class AppModule { }
