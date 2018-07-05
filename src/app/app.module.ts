@@ -1,6 +1,6 @@
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TodoService } from './services/todo.service';
+import { ArticleService } from './services/article.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -19,7 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule.forRoot()
   ],
   providers: [
-    TodoService
+    ArticleService
   ],
   bootstrap: [AppComponent]
 })
