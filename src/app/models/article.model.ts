@@ -1,12 +1,11 @@
 class Article {
     _id: string;
-    image: string;
+    image: File;
     title: string;
     description: string;
     date: Date;
 
     constructor() {
-        this.image = ""
         this.title = ""
         this.description = ""
         this.date = new Date()
