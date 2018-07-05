@@ -1,7 +1,7 @@
 # Article Manager Angular
 
 ## Api
-Make sure the api is running on your local server on port `3000` before starting the app
+Make sure the api is running on your local server on port `3000` before starting the app. You can clone it from this [link](https://github.com/jackie247s/article-api)
 
 ## Installation
 After cloning the repository, run `npm install` on the cli to install all necessary packages
