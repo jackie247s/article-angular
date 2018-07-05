@@ -14,18 +14,18 @@ export class ArticleService {
 
     constructor(private http: HttpClient) { }
 
-    createArticle(article: ToDo): Observable<any> {
+    createArticle(article: Article): Observable<any> {
         return this.http.post(`${this.articleUrl}`, article);
     }
 
-    getArticles(): Observable<ToDo[]> {
+    getArticles(): Observable<Article[]> {
         return this.http.get(this.articleUrl).pipe(
             map(res => {
-                return res["data"].docs as ToDo[];
+                return res["data"].docs as Article[];
             }));
     }
 
-    editArticle(article: ToDo) {
+    editArticle(article: Article) {
         let editUrl = `${this.articleUrl}`;
 
         return this.http.put(editUrl, article);
