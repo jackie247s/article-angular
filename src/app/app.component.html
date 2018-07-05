@@ -2,6 +2,24 @@
   <div class="col-md-2"></div>
   <div class="col-md-8">
     <h1>Articles</h1>
+    <form enctype="multipart/form-data" class="my-4">
+      <div class="form-row">
+    
+        <div class="col-md-12 mb-3">
+          <input type="text" name="title" id="title" [(ngModel)]="newArticle.title" placeholder="Title" class="form-control">
+        </div>
+        <div class="col-md-12 mb-3">
+          <input name="description" id="description" [(ngModel)]="newArticle.description" placeholder="Description" class="form-control"
+            id="description">
+        </div>
+        <div class="col-md-12 mb-3">
+          <input type="file" name="image" id="image" (change)="handleFileInput($event.target.files)" placeholder="Choose Image" class="form-control">
+        </div>
+        <div class="mx-auto col-md-6">
+          <button type="submit" class="btn btn-primary btn-block" (click)="create()">Add</button>
+        </div>
+      </div>
+    </form>
     <div class="articles" *ngIf="articlesList">
       <table class="table">
         <thead class="h">
@@ -50,25 +68,6 @@
       </table>
     </div>
 
-
-    <form enctype="multipart/form-data">
-      <div class="form-row">
-
-        <div class="col-md-12 mb-3">
-          <input type="text" name="title" id="title" [(ngModel)]="newArticle.title" placeholder="Title" class="form-control">
-        </div>
-        <div class="col-md-12 mb-3">
-          <input name="description" id="description" [(ngModel)]="newArticle.description" placeholder="Description" class="form-control"
-            id="description">
-        </div>
-        <div class="col-md-12 mb-3">
-          <input type="file" name="image" id="image" (change)="handleFileInput($event.target.files)" placeholder="Choose Image" class="form-control">
-        </div>        
-        <div class="mx-auto col-md-6">
-          <button type="submit" class="btn btn-primary btn-block" (click)="create()">Add</button>
-        </div>
-      </div>
-    </form>
   </div>
   <div class="col-md-2">
 
