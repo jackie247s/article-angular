@@ -1,15 +1,15 @@
 class Article {
     _id: string;
+    image: string;
     title: string;
     description: string;
     date: Date;
-    image: string;
 
     constructor() {
-        this.title = "";
-        this.description = "";
-        this.date = new Date();
-        this.image = "";
+        this.image = ""
+        this.title = ""
+        this.description = ""
+        this.date = new Date()
     }
 }
 
