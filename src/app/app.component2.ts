@@ -15,7 +15,7 @@ export class AppComponent2 implements OnInit {
     articlesList : Article[];
     editArticles: Article[] = [];
 
-    fileToUpload: File = null;
+    imageFile: File =  null;
 
     ngOnInit(): void {
         this.articleService.getArticles()
@@ -26,12 +26,7 @@ export class AppComponent2 implements OnInit {
     }
 
     create(): void {
-        console.log(this.newArticle)
-        // const formData: FormData = new FormData();
-        // formData.append('title', this.newArticle.title)
-        // formData.append('description', this.newArticle.description)
-        // formData.append('image', this.fileToUpload, this.fileToUpload.name);
-        // console.log(formData)
+        console.log(this.newArticle)        
         this.articleService.createArticle(this.newArticle)
         .subscribe(res => {
             this.articlesList.push(res.data)
@@ -47,6 +42,8 @@ export class AppComponent2 implements OnInit {
             }
             else {
                 this.editArticles.splice(this.editArticles.indexOf(article), 1)
+                article.image = this.imageFile
+                this.imageFile = null
                 this.articleService.editArticle(article).subscribe(res =>{
                     console.log("Edit successful")
                 }, err => {
@@ -65,6 +62,10 @@ export class AppComponent2 implements OnInit {
 
     handleFileInput(files: FileList) {
         this.newArticle.image = files.item(0);
+    }
+
+    setFile(files: FileList) {
+        this.imageFile = files.item(0);
     }
 
     title = 'app'
