@@ -14,7 +14,10 @@ export class ArticleService {
     constructor(private http: HttpClient) { }
 
     createArticle(article: Article): Observable<any> {
-        return this.http.post(`${this.articleUrl}`, article);
+        var formData: FormData = new FormData()
+        formData.append('file', article.image, article.image.name)
+        formData.append('data', JSON.stringify(article))
+        return this.http.post(`${this.articleUrl}`, formData);
     }
 
     getArticles(): Observable<Article[]> {
@@ -26,8 +29,12 @@ export class ArticleService {
 
     editArticle(article: Article) {
         let editUrl = `${this.articleUrl}`;
-
-        return this.http.put(editUrl, article);
+        var formData: FormData = new FormData()
+        if(article.image) {
+            formData.append('file', article.image, article.image.name)
+        }
+        formData.append('data', JSON.stringify(article))
+        return this.http.put(editUrl, formData);
     }    
 
     private handleError(error: any): Promise<any> {
