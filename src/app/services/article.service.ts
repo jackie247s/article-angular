@@ -1,5 +1,4 @@
-import Article from '../models/todo.model';
-import ToDo from '../models/article.model';
+import Article from '../models/article.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Response } from '@angular/http';
