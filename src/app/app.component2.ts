@@ -18,6 +18,7 @@ export class AppComponent2 implements OnInit {
     imageFile: File =  null;
 
     ngOnInit(): void {
+        // Get all articles
         this.articleService.getArticles()
         .subscribe(articles => {
             this.articlesList = articles
@@ -36,16 +37,26 @@ export class AppComponent2 implements OnInit {
 
     editArticle(article: Article): void {
         console.log(article)
+        // Check if article exists
         if(this.articlesList.includes(article)){
+            // Check if it already exists in edit list
             if(!this.editArticles.includes(article)){
+                // If not, push it in the list
                 this.editArticles.push(article)
             }
             else {
+                // Else remove it from the list and send put request with edited article
                 this.editArticles.splice(this.editArticles.indexOf(article), 1)
                 article.image = this.imageFile
                 this.imageFile = null
                 this.articleService.editArticle(article).subscribe(res =>{
                     console.log("Edit successful")
+
+                    // After sending put request, request new list of all articles
+                    this.articleService.getArticles()
+                        .subscribe(articles => {
+                            this.articlesList = articles
+                        })
                 }, err => {
                     this.editArticle(article)
                     console.log("Edit unsuccessful")
