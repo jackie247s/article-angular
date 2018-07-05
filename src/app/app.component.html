@@ -1,54 +1,48 @@
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-    <h1>Todo</h1>
-    <div class="todos" *ngIf="todosList">
+    <h1>Articles</h1>
+    <div class="articles" *ngIf="articlesList">
       <table class="table">
         <thead class="h">
           <tr class="h">
+            <th class="h">Image</th>
             <th class="h">Title</th>
             <th class="h">Description</th>
             <th class="h">Date</th>
-            <th class="h">Status</th>
             <th class="h">Options</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="todo" (dblclick)="editTodo(todo)" *ngFor="let todo of todosList">
+          <tr class="article" (dblclick)="editArticle(article)" *ngFor="let article of articlesList">
 
-            <ng-container *ngIf="!editTodos.includes(todo); else editTD">
-              <td>{{todo.title}}</td>
-              <td>{{todo.description}}</td>
-              <td>{{todo.date | date}}</td>
-              <td>{{todo.status}}</td>
+            <ng-container *ngIf="!editArticles.includes(article); else editTD">
+              <td><img src="http://localhost:3000/images/{{article.image}}" alt=""></td>
+              <td>{{article.title}}</td>
+              <td>{{article.description}}</td>
+              <td>{{article.date | date}}</td>
             </ng-container>
 
             <ng-template #editTD>
               <td>
-                <input type="text" name="title" id="title" (keypress)="submitTodo($event, todo)" [(ngModel)]="todo.title" placeholder="Title"
+                <input type="file" name="image" id="edit-image" (keypress)="submitArticle($event, article)" (change)="setFile($event.target.files)" placeholder="Image"
                   class="form-control">
               </td>
               <td>
-                <input type="text" name="description" id="description" (keypress)="submitTodo($event, todo)" [(ngModel)]="todo.description"
+                <input type="text" name="title" id="edit-title" (keypress)="submitArticle($event, article)" [(ngModel)]="article.title" placeholder="Title"
+                  class="form-control">
+              </td>
+              <td>
+                <input type="text" name="description" id="edit-description" (keypress)="submitArticle($event, article)" [(ngModel)]="article.description"
                   placeholder="Description" class="form-control">
               </td>
-              <td>{{todo.date | date}}</td>
-              <td>
-                <input type="text" name="status" id="status" (keypress)="submitTodo($event, todo)" [(ngModel)]="todo.status" placeholder="Status"
-                  class="form-control">
-              </td>
+              <td>{{article.date | date}}</td>
             </ng-template>
 
-            <td class="o">
-              <button class="btn btn-success" (click)="doneTodo(todo)">
-                <i class="fa fa-check"></i>
-              </button>
-              <button class="btn btn-primary" (click)="editTodo(todo)">
+            <td class="o">              
+              <button class="btn btn-primary" (click)="editArticle(article)">
                 <i class="fa fa-pencil"></i>
-              </button>
-              <button class="btn btn-danger" (click)="deleteTodo(todo)">
-                <i class="fa fa-trash"></i>
-              </button>
+              </button>              
             </td>
 
           </tr>
@@ -57,18 +51,21 @@
     </div>
 
 
-    <form>
+    <form enctype="multipart/form-data">
       <div class="form-row">
 
-        <div class="col-md-5">
-          <input type="text" name="title" id="title" [(ngModel)]="newTodo.title" placeholder="Title" class="form-control">
+        <div class="col-md-12 mb-3">
+          <input type="text" name="title" id="title" [(ngModel)]="newArticle.title" placeholder="Title" class="form-control">
         </div>
-        <div class="col-md-5">
-          <input name="description" id="description" [(ngModel)]="newTodo.description" placeholder="Description" class="form-control"
+        <div class="col-md-12 mb-3">
+          <input name="description" id="description" [(ngModel)]="newArticle.description" placeholder="Description" class="form-control"
             id="description">
         </div>
-        <div class="col-md-2">
-          <button type="submit" class="btn btn-primary" (click)="create()">Add</button>
+        <div class="col-md-12 mb-3">
+          <input type="file" name="image" id="image" (change)="handleFileInput($event.target.files)" placeholder="Choose Image" class="form-control">
+        </div>        
+        <div class="mx-auto col-md-6">
+          <button type="submit" class="btn btn-primary btn-block" (click)="create()">Add</button>
         </div>
       </div>
     </form>
